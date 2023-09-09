@@ -109,11 +109,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   when you have a large collection of notes.
   
   2) Highlight Key Information: Use formatting options like bold, italics, or highlighting to emphasize key points or concepts within      your notes.
-  3) 
-  4) Include Visual Aids: If the video includes diagrams, charts, or visual aids, you can also describe them in your notes or include 
+  
+  3) Include Visual Aids: If the video includes diagrams, charts, or visual aids, you can also describe them in your notes or include 
   screenshots for reference.
 
-  5) Share and Collaborate: If you're studying with others, you can share your timestamped notes with them. Collaborative note-taking 
+  4) Share and Collaborate: If you're studying with others, you can share your timestamped notes with them. Collaborative note-taking 
   can be a powerful way to fill in gaps and enhance comprehension.
 
-  7) View and Edit buttons for each note.
+  5) View and Edit buttons for each note.
