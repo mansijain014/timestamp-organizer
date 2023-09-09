@@ -5,8 +5,6 @@
 ❓ Why is Timestamp Organizer useful?
   Timestamp Organizer helps students easily navigate and find information in online video lectures. It makes note-taking more efficient and effective.
   You can create well-organized, timestamped notes that make it easier to revisit and review the key information from online videos efficiently. This approach can significantly improve one’s retention and understanding of the material.
-
-![](https://www.youtube.com/watch?v=BQdZNg-sy)
   
 💻 Technologies Used:
   1) HTML
