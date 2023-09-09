@@ -1,72 +1,43 @@
-import React, { useState } from "react";
-import NewNoteForm from "./NewNoteForm";
-// import './home.css'
-import { Grid } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
 import HomeSideBar from "./HomeSideBar";
 import NotesList from "./NotesList";
 import './NotesList.css'
+
+const getLocalStorage = () => {
+    const savedNotes = JSON.parse(localStorage.getItem('react-timestamp-app-data'));
+        // console.log('SAVED NOTES',savedNotes)
+        if(savedNotes) {
+            return JSON.parse(localStorage.getItem('react-timestamp-app-data'));
+        }else {
+            return []
+        }
+    }
+
 const Home = () => {
 
-    const [notes, setNotes] = useState(
-        [{
-            noteName: 'React JS Course',
-            videoUrl: 'https://react.com',
-            timestampName: 'States and Props',
-            hour: '00',
-            minute: '01',
-            seconds: '50',
-        },
-        {
-            noteName: 'React JS Course1',
-            videoUrl: 'https://react1.com',
-            timestampName: 'States and Props1',
-            hour: '00',
-            minute: '11',
-            seconds: '50',
-        },
-        {
-            noteName: 'React JS Course',
-            videoUrl: 'https://react.com',
-            timestampName: 'States and Props',
-            hour: '00',
-            minute: '01',
-            seconds: '50',
-        },
-        {
-            noteName: 'React JS Course',
-            videoUrl: 'https://react.com',
-            timestampName: 'States and Props',
-            hour: '00',
-            minute: '01',
-            seconds: '50',
-        },
-        {
-            noteName: 'React JS Course',
-            videoUrl: 'https://react.com',
-            timestampName: 'States and Props',
-            hour: '00',
-            minute: '01',
-            seconds: '50',
-        },
-        {
-            noteName: 'React JS Course',
-            videoUrl: 'https://react.com',
-            timestampName: 'States and Props',
-            hour: '00',
-            minute: '01',
-            seconds: '50',
-        }]
-    )
+    const [notes, setNotes] = useState(getLocalStorage())
+
+    useEffect(() => {
+        // console.log('NOTES: ',notes)
+        localStorage.setItem(
+            'react-timestamp-app-data', 
+            JSON.stringify(notes));
+    }, [notes])
     
+    const addNote = (formData) => {
+        // console.log('FORM DATAAAA: ',formData)
+        setNotes((prevState) => {return [
+            ...prevState,
+            formData
+        ]})
+    }
+
     return(
         <div>
-            <HomeSideBar />
+            <HomeSideBar handleAddNote= {addNote}/>
             <div className="notes-list">
                 <NotesList notes={notes}/>
             </div>
-        {/* //     <h1>Timestamp Organizer</h1> */}
-        {/* // <div class='mynotes'>My Notes</div>
-        //     <NewNoteForm/> */}
         </div>
     )
 }

@@ -10,7 +10,7 @@ const NotesList = ({notes}) =>{
                 <Notes 
                     noteName={note.noteName}
                     videoUrl={note.videoUrl} 
-                    timestampName={note.timestampName}
+                    description={note.description}
                     hour={note.hour}
                     minute={note.minute}
                     seconds={note.seconds} 

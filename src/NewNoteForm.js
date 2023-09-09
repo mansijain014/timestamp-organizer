@@ -1,20 +1,20 @@
-import { Button, Card, Form, Grid, GridRow, Header, Icon, Menu, Modal } from "semantic-ui-react";
+import { Button, Form, Grid, GridRow, Icon, Menu, Modal } from "semantic-ui-react";
 import { useState } from "react";
 import "./NewNoteForm.css";
 
-const NewNoteForm = () => {
+const NewNoteForm = ({handleAddNote}) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     noteName: '',
     videoUrl: '',
-    timestampName: '',
+    description: '',
     hour: '00',
     minute: '00',
     seconds: '00',
   })
 
   const handleChange = (event) => {
-    console.log('handle change called',event)
+    // console.log('handle change called',event)
     const {name, value} = event.target
     setFormData((prevState) => 
       { return { 
@@ -24,19 +24,33 @@ const NewNoteForm = () => {
     })
   }
 
-  const {noteName, videoUrl, timestampName, hour, minute, seconds} = formData
+  const handleSubmitNote = (event) => {
+    event.preventDefault()
+    handleAddNote(formData)
+    setOpen(false)
+    setFormData({
+      noteName: '',
+      videoUrl: '',
+      description: '',
+      hour: '00',
+      minute: '00',
+      seconds: '00',
+    })
+  }
+
+  const {noteName, videoUrl, description, hour, minute, seconds} = formData
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Menu.Item><Icon name='plus'/>Start a new Note</Menu.Item>}
+      trigger={<Menu.Item><Icon name='plus'/>Add a new Timestamp</Menu.Item>}
     >
-      <Modal.Header>Start a new Note</Modal.Header>
-      {console.log('FORM DATA: ',formData)}
+      <Modal.Header>Add a new Timestamp</Modal.Header>
+      {/* {console.log('FORM DATA: ',formData)} */}
       <Form className="add-note-form">
         <Form.Field>
-          <label>Would you like to give a name to this note?</label>
+          <label>Would you like to give a name to this timestamp?</label>
           <input placeholder="Enter Name" value={noteName} name='noteName' onChange={handleChange}/>
         </Form.Field>
         <Form.Field>
@@ -44,13 +58,13 @@ const NewNoteForm = () => {
           <input placeholder="Video Link" value={videoUrl} name='videoUrl' onChange={handleChange}/>
         </Form.Field>
         <Form.Field>
-          <label>Time Stamp(s)</label>
+          <label>Additional notes</label>
+          <textarea placeholder="Additional notes..." value={description} name='description' onChange={handleChange}/>
+        </Form.Field>
+        <Form.Field>
+          <label>Time Stamp</label>
           <Grid>
             <GridRow>
-              <Grid.Column width={4}>
-                <input placeholder="Time Stamp" value={timestampName} name='timestampName' onChange={handleChange}/>
-              </Grid.Column>
-              {/* <input type="time" class="without_ampm" /> */}
               <Grid.Column width={2}>
                 <input
                   type="number"
@@ -87,9 +101,6 @@ const NewNoteForm = () => {
                   onChange={handleChange}
                 ></input>
               </Grid.Column>
-              <Grid.Column width={3}>
-                <Button>+</Button>
-              </Grid.Column>
             </GridRow>
           </Grid>
         </Form.Field>
@@ -100,8 +111,9 @@ const NewNoteForm = () => {
           content="Add Note"
           labelPosition="right"
           icon="plus"
-          onClick={() => setOpen(false)}
+          onClick={handleSubmitNote}
           positive
+          type="submit"
         />
       </Modal.Actions>
     </Modal>
