@@ -2,7 +2,7 @@ import { Header, Icon, Image, Menu, Segment, Sidebar } from "semantic-ui-react";
 import NewNoteForm from "./NewNoteForm";
 import './HomeSideBar.css'
 
-const HomeSideBar = () => {
+const HomeSideBar = ({handleAddNote}) => {
   return (
     <Sidebar
       as={Menu}
@@ -17,7 +17,7 @@ const HomeSideBar = () => {
         <Icon name="home" />
         Timestamp Organizer
       </Menu.Item>
-      <NewNoteForm />
+      <NewNoteForm handleAddNote={handleAddNote} />
     </Sidebar>
     // <Sidebar.Pusher>
     //   <Segment basic>

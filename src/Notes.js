@@ -1,15 +1,20 @@
-import { Button, Card, Icon, Image } from "semantic-ui-react"
+import { Button, Card } from "semantic-ui-react"
 
 const Notes = (props) => {
     const {noteName,videoUrl,timestampName,hour,minute,seconds} = props
+    console.log('URL: ',videoUrl.substring(32))
     return (
         <Card>
-            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+            <iframe
+                width="290"
+                height="150"
+                src={`https://www.youtube.com/embed/${videoUrl.substring(32)}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+            />
     <Card.Content>
       <Card.Header>{noteName}</Card.Header>
-      <Card.Meta>
-        <span className='date'>{videoUrl}</span>
-      </Card.Meta>
       <Card.Description>
         {timestampName}
       </Card.Description>

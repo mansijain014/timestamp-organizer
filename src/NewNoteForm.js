@@ -2,7 +2,7 @@ import { Button, Card, Form, Grid, GridRow, Header, Icon, Menu, Modal } from "se
 import { useState } from "react";
 import "./NewNoteForm.css";
 
-const NewNoteForm = () => {
+const NewNoteForm = ({handleAddNote}) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     noteName: '',
@@ -21,6 +21,20 @@ const NewNoteForm = () => {
           ...prevState, 
           [name] : value
         }
+    })
+  }
+
+  const handleSubmitNote = (event) => {
+    event.preventDefault()
+    handleAddNote(formData)
+    setOpen(false)
+    setFormData({
+      noteName: '',
+      videoUrl: '',
+      timestampName: '',
+      hour: '00',
+      minute: '00',
+      seconds: '00',
     })
   }
 
@@ -100,8 +114,10 @@ const NewNoteForm = () => {
           content="Add Note"
           labelPosition="right"
           icon="plus"
-          onClick={() => setOpen(false)}
+          // onClick={() => setOpen(false)}
+          onClick={handleSubmitNote}
           positive
+          type="submit"
         />
       </Modal.Actions>
     </Modal>
